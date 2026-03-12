@@ -1,0 +1,57 @@
+{
+  "name": "@rezics/icons",
+  "version": "0.1.1",
+  "description": "Tree-shakeable React icon library.",
+  "type": "module",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.js"
+    },
+    "./components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    }
+  },
+  "scripts": {
+    "generate": "bun run ./src/scripts/generate-icons.ts",
+    "build": "bun run generate && tsup --config ./tsup.config.ts",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "icons",
+    "react",
+    "svg",
+    "tree-shaking"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@types/react": "^19.1.12",
+    "fast-glob": "^3.3.3",
+    "react": "^19.1.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@types/bun": "^1.3.10"
+  }
+}
